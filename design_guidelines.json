@@ -1,0 +1,107 @@
+{
+  "theme": "LIGHT",
+  "archetype": "Modified Archetype 4 / 1 (Editorial & Airy)",
+  "vibe": "Elegant, subtractive, authoritative, and spacious. Focuses on typographic tension and clean structural grids.",
+  "colors": {
+    "background": "#FDFCFB",
+    "surface": "#F3F1ED",
+    "surface_secondary": "#EAE7E1",
+    "text_primary": "#111111",
+    "text_secondary": "#6B6A68",
+    "border": "#E2DFD9",
+    "primary": "#0F0F0F",
+    "primary_foreground": "#FFFFFF",
+    "accent": "#C4A484"
+  },
+  "typography": {
+    "font_family_headings": "Cormorant Garamond, serif",
+    "font_family_body": "Manrope, sans-serif",
+    "h1": "text-5xl sm:text-6xl+ font-light tracking-tighter leading-none",
+    "h2": "text-3xl sm:text-4xl font-normal tracking-tight leading-tight",
+    "h3": "text-xl sm:text-2xl font-normal tracking-tight",
+    "body": "text-base leading-relaxed tracking-normal text-text_secondary",
+    "overline": "text-xs uppercase tracking-[0.2em] font-semibold text-text_secondary",
+    "install_instructions": "Add Google Fonts imports for 'Cormorant Garamond' (weights 300, 400, 600) and 'Manrope' (weights 400, 500, 600) to index.css or tailwind config."
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing, Subtractive Design. The empty areas spotlight what truly matters.",
+    "section_padding": "py-24 md:py-32",
+    "container": "max-w-7xl mx-auto px-6 md:px-12",
+    "grid_modes": {
+      "stats": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+      "offerings": "grid grid-cols-1 md:grid-cols-3 gap-8",
+      "bento_showcase": "grid grid-cols-1 md:grid-cols-12 gap-8"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#111111] text-white hover:bg-[#333333] transition-colors duration-300 rounded-none px-8 py-4 font-body text-sm tracking-wide uppercase",
+      "secondary": "border border-[#111111] text-[#111111] hover:bg-[#F3F1ED] transition-colors duration-300 rounded-none px-8 py-4 font-body text-sm tracking-wide uppercase"
+    },
+    "cards": {
+      "style": "bg-[#F3F1ED] border border-border p-8 md:p-12 rounded-none shadow-none",
+      "hover": "hover:shadow-xl transition-shadow duration-500"
+    },
+    "chat_mockup": {
+      "container": "bg-white border border-border rounded-xl p-6 shadow-sm flex flex-col gap-4 max-w-md mx-auto relative",
+      "user_bubble": "bg-[#F3F1ED] text-text_primary p-4 rounded-2xl rounded-tr-sm text-sm self-end max-w-[85%]",
+      "ai_bubble": "bg-[#111111] text-white p-4 rounded-2xl rounded-tl-sm text-sm self-start max-w-[85%]"
+    }
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/e7a63ec8-ab4e-4969-b960-c0bc52a56f3c/images/f1c7c741182ad8db6f33b65c05b972a24a12d2e5db6397a52af179c8fa541c09.png",
+        "category": "hero_background",
+        "description": "Abstract minimal soft white gradient background for the hero section."
+      },
+      {
+        "url": "https://images.pexels.com/photos/8070398/pexels-photo-8070398.jpeg",
+        "category": "industry_fashion",
+        "description": "Fashion model editorial image to accompany the clothing/jewellery industry showcase."
+      },
+      {
+        "url": "https://images.pexels.com/photos/30211361/pexels-photo-30211361.jpeg",
+        "category": "industry_furniture",
+        "description": "Modern living room white interior image for the furniture industry showcase."
+      },
+      {
+        "url": "https://images.pexels.com/photos/7428214/pexels-photo-7428214.jpeg",
+        "category": "industry_office",
+        "description": "Clean office supplies desk image for the office supplies industry showcase."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1526947425960-945c6e72858f",
+        "category": "industry_beauty",
+        "description": "Skincare beauty products minimal image for the beauty industry showcase."
+      },
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/e7a63ec8-ab4e-4969-b960-c0bc52a56f3c/images/e484884975f8c2804e9b609c905e52bb970cc6e72de176b110957f483cbb5bfc.png",
+        "category": "offering_catalog_enrichment",
+        "description": "Abstract minimalist art for the Catalog Enrichment offering card."
+      },
+      {
+        "url": "https://static.prod-images.emergentagent.com/jobs/e7a63ec8-ab4e-4969-b960-c0bc52a56f3c/images/5356f5eb6ce0ae327d9299a0eef95b02efc7d1bc8cc0d62baeb22c71dcf16635.png",
+        "category": "offering_knowledge_graph",
+        "description": "Elegant data visualization for the Intent-Aware Knowledge Graph offering card."
+      }
+    ],
+    "logos": {
+      "instructions": "Use standard typographic layouts for partner/founding team logos (IIT, BITS, META, MICROSOFT, UBER, VISA, CISCO). Style them as uppercase, heavy tracking (tracking-widest), text-sm, text-text_secondary/60 font-semibold to act as subtle monochrome trust marks."
+    }
+  },
+  "sections_instructions": {
+    "hero": "Full height or min-h-[90vh]. Use 'hero_background' as a subtle absolute background image covering the section. Large Serif H1. Clear mission statement about SuperSearch. Primary CTA 'Get Started' or 'Book Demo'.",
+    "stats": "A high-contrast bar across the screen or a 4-col grid displaying the 4 key stats (58%, 4x, 35%/doubled, 82%). Use massive typography for the numbers (Cormorant Garamond) and small uppercase overlines for the description.",
+    "industry_showcase": "Implement a tabbed interface. Tabs on the left or top (Fashion, Furniture, Office, Beauty). When a tab is clicked, show the respective image alongside an interactive chat mockup. Chat mockup must display the exact user query from the prompt and a skeleton/shimmer AI response.",
+    "global_reach_callout": "Use a marquee (react-fast-marquee) or a massive typography block: 'CATERING TO EVERY COMPANY ACROSS EVERY INDUSTRY'.",
+    "offerings": "3-column grid. Each card represents an offering: 1) AI Shopping Assistant, 2) Catalog Enrichment (use image), 3) Intent-Aware Knowledge Graph (use image). Cards should be airy, #F3F1ED background, subtle hover effects.",
+    "founding_team": "Simple, elegant section 'Built by alumni from:'. Display the text-based logos in a responsive flex/grid layout, muted and aligned.",
+    "pricing_and_contact": "Split section or two sequential blocks. Highlight 'Most competitive pricing on the market'. A highly customized, elegant Shadcn form for Contact (Name, Company, Email, Message) with a stark black submit button."
+  },
+  "accessibility_and_interactions": {
+    "testing": "All interactive elements, buttons, tabs, form inputs MUST include `data-testid` attributes (e.g., `data-testid='hero-cta'`, `data-testid='tab-fashion'`).",
+    "hover_states": "All buttons and links must have distinct, accessible hover states.",
+    "motion": "Use framer-motion for subtle fade-ups on scroll. Keep it sophisticated and slow (duration: 0.8s, ease: [0.16, 1, 0.3, 1])."
+  }
+}
