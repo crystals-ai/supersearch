@@ -16,10 +16,9 @@ from sendgrid.helpers.mail import Mail
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+SENDGRID_SENDER = 'shaliniiitkgp2021@gmail.com'
+MY_INBOX = 'supersearch00@gmail.com'
 
 # Configure logging early so module-level functions can use `logger`
 logging.basicConfig(
@@ -59,47 +58,24 @@ class ContactSubmissionResponse(BaseModel):
     status: str
     message: str
 
+def send_email_via_sendgrid(sender, recipient, subject, body, reply_to=None):
+    message = Mail(
+        from_email=sender,
+        to_emails=recipient,
+        subject=subject,
+        plain_text_content=body
+    )
+    
+    if reply_to:
+        message.reply_to = ReplyTo(reply_to)
 
-def send_contact_email(payload: ContactSubmissionCreate) -> bool:
-    api_key = os.environ.get('SENDGRID_API_KEY')
-    sender = os.environ.get('SENDER_EMAIL')
-    destination = os.environ.get('CONTACT_DESTINATION_EMAIL')
-
-    if not (api_key and sender and destination):
-        logger.warning("SendGrid config missing; skipping email send")
-        return False
-
-    subject = f"[SuperSearch] New enquiry from {payload.company}"
-    html_content = f"""
-    <div style="font-family: Manrope, Arial, sans-serif; color: #111; max-width: 600px;">
-      <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 28px; margin: 0 0 16px;">New contact enquiry</h2>
-      <p style="color:#6B6A68; margin: 0 0 24px;">A brand just reached out via the SuperSearch website.</p>
-      <table style="width:100%; border-collapse: collapse;">
-        <tr><td style="padding:8px 0; color:#6B6A68; width:140px;">Name</td><td style="padding:8px 0;">{payload.name}</td></tr>
-        <tr><td style="padding:8px 0; color:#6B6A68;">Company</td><td style="padding:8px 0;">{payload.company}</td></tr>
-        <tr><td style="padding:8px 0; color:#6B6A68;">Email</td><td style="padding:8px 0;"><a href="mailto:{payload.email}">{payload.email}</a></td></tr>
-      </table>
-      <div style="margin-top:24px; padding:16px; background:#F3F1ED; border:1px solid #E2DFD9;">
-        <div style="color:#6B6A68; font-size:12px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom:8px;">Message</div>
-        <div style="white-space: pre-wrap; line-height:1.6;">{payload.message}</div>
-      </div>
-    </div>
-    """
     try:
-        message = Mail(
-            from_email=sender,
-            to_emails=destination,
-            subject=subject,
-            html_content=html_content,
-        )
-        message.reply_to = payload.email
-        sg = SendGridAPIClient(api_key)
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
         response = sg.send(message)
-        return 200 <= response.status_code < 300
-    except Exception as exc:
-        logger.exception("SendGrid send failed: %s", exc)
+        return response.status_code in [200, 201, 202]
+    except Exception as e:
+        print(f"SendGrid Error: {e}")
         return False
-
 
 @api_router.get("/")
 async def root():
@@ -108,14 +84,28 @@ async def root():
 
 @api_router.post("/contact", response_model=ContactSubmissionResponse)
 async def create_contact_submission(payload: ContactSubmissionCreate):
+    # 1. Create the database object logic
     submission = ContactSubmission(**payload.model_dump())
 
-    email_ok = send_contact_email(payload)
-    submission.email_sent = email_ok
+    full_message = (
+        f"You have a new contact form submission:\n\n"
+        f"Name: {payload.name}\n"
+        f"User Email: {payload.email}\n\n"
+        f"Message:\n{payload.message}"
+    )
 
-    doc = submission.model_dump()
-    doc['created_at'] = doc['created_at'].isoformat()
-    await db.contact_submissions.insert_one(doc)
+    # 4. Send the email to YOUR inbox
+    # We pass payload.email as the reply_to so you can respond easily
+    email_ok = send_email_via_sendgrid(
+        sender=SENDGRID_SENDER,
+        recipient=MY_INBOX,
+        subject=f"New Website Message from {payload.name}",
+        body=full_message,
+        reply_to=payload.email 
+    )
+
+    submission.email_sent = email_ok
+    # If using a DB, you would submission.save() here
 
     return ContactSubmissionResponse(
         id=submission.id,
@@ -127,16 +117,6 @@ async def create_contact_submission(payload: ContactSubmissionCreate):
         ),
     )
 
-
-@api_router.get("/contact", response_model=List[ContactSubmission])
-async def list_contact_submissions():
-    items = await db.contact_submissions.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
-    for it in items:
-        if isinstance(it.get('created_at'), str):
-            it['created_at'] = datetime.fromisoformat(it['created_at'])
-    return items
-
-
 # Include the router in the main app
 app.include_router(api_router)
 
@@ -147,8 +127,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
