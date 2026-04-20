@@ -25,6 +25,11 @@ SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDGRID_SENDER = 'shaliniiitkgp2021@gmail.com'
 MY_INBOX = 'supersearch00@gmail.com'
 
+if SENDGRID_API_KEY:
+    print(f"Key found! Starts with: {SENDGRID_API_KEY[:6]}")
+else:
+    print("Key is MISSING from environment variables")
+
 # Configure logging early so module-level functions can use `logger`
 logging.basicConfig(
     level=logging.INFO,
