@@ -68,7 +68,7 @@ export const Contact = () => {
               </div>
               <div className="flex items-baseline gap-3">
                 <span className="text-[#C4A484]">✦</span>
-                <span>Pilot pricing for the first 3 months.</span>
+                <span>Pilot pricing for the first 2 months.</span>
               </div>
               <div className="flex items-baseline gap-3">
                 <span className="text-[#C4A484]">✦</span>
