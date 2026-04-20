@@ -1,4 +1,6 @@
 from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -16,7 +18,7 @@ from fastapi.responses import FileResponse
 
 
 ROOT_DIR = Path(__file__).parent
-FRONTEND_DIR = ROOT_DIR.parent / "frontend" / "public"
+FRONTEND_DIR = ROOT_DIR.parent / "frontend" / "build"
 load_dotenv(ROOT_DIR / '.env')
 
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
@@ -32,6 +34,7 @@ logger = logging.getLogger(__name__)
 
 # Create the main app without a prefix
 app = FastAPI(title="SuperSearch API")
+app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR / "static")), name="static")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
