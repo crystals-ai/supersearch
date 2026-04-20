@@ -1,12 +1,10 @@
 fastapi==0.110.1
 uvicorn==0.25.0
 starlette==0.37.2
-motor==3.3.1
-pymongo==4.5.0
 pydantic==2.12.5
 email-validator==2.3.0
 python-dotenv==1.2.2
-sendgrid==6.12.5
-dnspython==2.8.0
+gspread
+google-auth
 pytest==9.0.3
 requests==2.33.1
