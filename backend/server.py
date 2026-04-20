@@ -10,13 +10,13 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from sendgrid.helpers.mail import Mail, ReplyTo
 
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 
 
 ROOT_DIR = Path(__file__).parent
+FRONTEND_DIR = ROOT_DIR.parent / "frontend" / "public"
 load_dotenv(ROOT_DIR / '.env')
 
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
@@ -32,7 +32,6 @@ logger = logging.getLogger(__name__)
 
 # Create the main app without a prefix
 app = FastAPI(title="SuperSearch API")
-app.mount("/assets", StaticFiles(directory="backend/dist/assets"), name="assets")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -81,11 +80,6 @@ def send_email_via_sendgrid(sender, recipient, subject, body, reply_to=None):
         print(f"SendGrid Error: {e}")
         return False
 
-@app.get("/")
-async def serve_spa():
-    return FileResponse("backend/dist/index.html")
-
-
 @api_router.post("/contact", response_model=ContactSubmissionResponse)
 async def create_contact_submission(payload: ContactSubmissionCreate):
     # 1. Create the database object logic
@@ -131,3 +125,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Catch-all must be last so it doesn't shadow API routes
+@app.get("/{full_path:path}")
+async def serve_spa(full_path: str):
+    return FileResponse(FRONTEND_DIR / "index.html")
