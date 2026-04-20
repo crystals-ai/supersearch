@@ -14,6 +14,9 @@ from datetime import datetime, timezone
 
 import gspread
 from google.oauth2.service_account import Credentials
+import threading
+import time
+import requests as http_requests
 
 
 ROOT_DIR = Path(__file__).parent
@@ -56,6 +59,22 @@ def append_to_sheet(payload) -> bool:
 
 app = FastAPI(title="SuperSearch API")
 app.mount("/static", StaticFiles(directory=str(FRONTEND_DIR / "static")), name="static")
+
+
+def _ping_loop(url: str):
+    while True:
+        time.sleep(10)  # every 10 seconds
+        try:
+            http_requests.get(url, timeout=10)
+        except Exception:
+            pass
+
+
+@app.on_event("startup")
+async def startup():
+    url = os.environ.get("RENDER_EXTERNAL_URL")
+    if url:
+        threading.Thread(target=_ping_loop, args=(f"{url}/api/",), daemon=True).start()
 
 api_router = APIRouter(prefix="/api")
 
