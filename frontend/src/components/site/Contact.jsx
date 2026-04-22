@@ -17,8 +17,8 @@ export const Contact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.company || !form.email || !form.message) {
-      toast.error("Please fill in every field so we can reach out properly.");
+    if (!form.name || !form.email) {
+      toast.error("Please fill in name and email so we can reach out to you.");
       return;
     }
     setSubmitting(true);
