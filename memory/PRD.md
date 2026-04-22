@@ -4,7 +4,7 @@
 Company marketing website for **SuperSearch**, a startup that builds AI shopping assistants for retail companies across every industry (fashion, jewellery, bags, shoes, makeup, furniture, electronics, office supplies, etc.). The site highlights:
 - 4 stats: 58% prefer AI assistants (up from 25% in 2023); 4× higher conversion for conversational vs keyword search (12.3% vs 3.1%, Rep AI); 35% of queries are full sentences, 7–8 word queries nearly doubled since ChatGPT (Search Engine Land); 82% want AI assistants to cut research time.
 - Industry showcase with real example queries (fashion/jewellery, furniture, office supplies, beauty) — as interactive chat-style mockups with tabs.
-- Offerings: AI Shopping Assistant, Catalog Enrichment, Intent-Aware Knowledge Graph.
+- Offerings: AI Shopping Assistant, Catalog Enrichment, Intent-Aware Knowledge Graph, Virtual Try-On, Multilingual Queries, App Storefront on ChatGPT.
 - Founding team credentials (IIT / BITS / Meta / Microsoft / Uber / Visa / Cisco), most competitive pricing.
 - Contact form to email `shaliniiitkgp2021@gmail.com`.
 

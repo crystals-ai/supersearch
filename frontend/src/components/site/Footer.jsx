@@ -20,7 +20,10 @@ export const Footer = () => {
               <ul className="space-y-2 text-white/80">
                 <li><a href="#offerings" className="hover:text-[#C4A484]">AI Shopping Assistant</a></li>
                 <li><a href="#offerings" className="hover:text-[#C4A484]">Catalog Enrichment</a></li>
-                <li><a href="#offerings" className="hover:text-[#C4A484]">Knowledge Graph</a></li>
+                <li><a href="#offerings" className="hover:text-[#C4A484]">Intent-Aware Knowledge Graph</a></li>
+                <li><a href="#offerings" className="hover:text-[#C4A484]">Virtual Try-On</a></li>
+                <li><a href="#offerings" className="hover:text-[#C4A484]">Multilingual Queries</a></li>
+                <li><a href="#offerings" className="hover:text-[#C4A484]">App Storefront on ChatGPT</a></li>
               </ul>
             </div>
             <div>

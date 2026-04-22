@@ -95,7 +95,7 @@
     "stats": "A high-contrast bar across the screen or a 4-col grid displaying the 4 key stats (58%, 4x, 35%/doubled, 82%). Use massive typography for the numbers (Cormorant Garamond) and small uppercase overlines for the description.",
     "industry_showcase": "Implement a tabbed interface. Tabs on the left or top (Fashion, Furniture, Office, Beauty). When a tab is clicked, show the respective image alongside an interactive chat mockup. Chat mockup must display the exact user query from the prompt and a skeleton/shimmer AI response.",
     "global_reach_callout": "Use a marquee (react-fast-marquee) or a massive typography block: 'CATERING TO EVERY COMPANY ACROSS EVERY INDUSTRY'.",
-    "offerings": "3-column grid. Each card represents an offering: 1) AI Shopping Assistant, 2) Catalog Enrichment (use image), 3) Intent-Aware Knowledge Graph (use image). Cards should be airy, #F3F1ED background, subtle hover effects.",
+    "offerings": "3-column grid. Each card represents an offering: 1) AI Shopping Assistant, 2) Catalog Enrichment (use image), 3) Intent-Aware Knowledge Graph (use image), 4) Virtual Try-On (use image), 5) Multilingual Queries (use image), 6) App Storefront on ChatGPT (use image). Cards should be airy, #F3F1ED background, subtle hover effects.",
     "founding_team": "Simple, elegant section 'Built by alumni from:'. Display the text-based logos in a responsive flex/grid layout, muted and aligned.",
     "pricing_and_contact": "Split section or two sequential blocks. Highlight 'Most competitive pricing on the market'. A highly customized, elegant Shadcn form for Contact (Name, Company, Email, Message) with a stark black submit button."
   },
