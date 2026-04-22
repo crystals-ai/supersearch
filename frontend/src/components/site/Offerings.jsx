@@ -95,7 +95,7 @@ const Card = ({ item, index }) => {
       <p className="text-[#6B6A68] leading-relaxed">{item.body}</p>
 
       <div className="mt-10 pt-6 border-t border-[#E2DFD9] text-xs uppercase tracking-[0.18em] text-[#111] opacity-60 group-hover:opacity-100 transition-opacity">
-        — Available from day one
+        — Plug and play
       </div>
     </motion.div>
   );
