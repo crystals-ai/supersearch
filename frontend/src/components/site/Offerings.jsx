@@ -35,7 +35,7 @@ const OFFERINGS = [
     id: "graph",
     number: "04",
     title: "Virtual Try-On",
-    subtitle: "Try on your products before you buy.",
+    subtitle: "Reduces returns and increases conversions.",
     body:
       "A virtual try-on feature that allows customers to try on products before they buy. It uses AI to generate a 3D model of the product and allows the customer to try it on virtually.",
     image:
@@ -45,7 +45,7 @@ const OFFERINGS = [
     id: "graph",
     number: "05",
     title: "Multilingual Queries",
-    subtitle: "Support queries in multiple languages from your customers.",
+    subtitle: "Support queries in multiple languages.",
     body:
       "A multilingual query feature that allows customers to query your catalog in their language. It uses AI to generate a response in the customer's language.",
     image:
@@ -55,9 +55,9 @@ const OFFERINGS = [
     id: "graph",
     number: "06",
     title: "App Storefront on ChatGPT",
-    subtitle: "40% of shoppers now start their buying journey on an AI platforms.",
+    subtitle: "Meet your buyers where they start.",
     body:
-      "We'll build a custom app storefront on ChatGPT that allows customers to discover your products directly from the chat interface. Show up right where the customer journey starts.",
+      "40% of shoppers now start their buying journey on an AI platforms. We'll build a custom app storefront on ChatGPT that allows customers to discover your products directly from the chat interface.",
     image:
       "https://static.prod-images.emergentagent.com/jobs/e7a63ec8-ab4e-4969-b960-c0bc52a56f3c/images/5356f5eb6ce0ae327d9299a0eef95b02efc7d1bc8cc0d62baeb22c71dcf16635.png",
   }
